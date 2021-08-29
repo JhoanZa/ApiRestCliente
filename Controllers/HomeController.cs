@@ -1,11 +1,8 @@
-﻿using ApiRestCliente.Models;
+﻿using ApiRestCliente.Controllers.CUsuarios;
+using ApiRestCliente.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiRestCliente.Controllers
 {
@@ -20,7 +17,7 @@ namespace ApiRestCliente.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(UsuarioController.Usuario);
         }
 
         public IActionResult Privacy()

@@ -23,7 +23,7 @@ namespace ConsoleApp1.Gestores
         public static Usuario ConsultarUsuario(String correo)
         {
             Uri();
-            var request = client.GetAsync($"api/Usuarios/{correo}").Result;
+            var request = client.GetAsync($"/api/Usuarios/{correo}").Result;
 
             if (request.IsSuccessStatusCode)
             {

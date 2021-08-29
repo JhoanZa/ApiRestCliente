@@ -8,8 +8,31 @@ namespace ApiRestCliente.Controllers.CUsuarios
 {
     public class UsuarioController : Controller
     {
+        private static Usuario usuario = new();
+        public static Usuario Usuario { get => usuario; set => usuario = value; }
+
         public IActionResult Index()
         {
+            if (!usuario.PrimerNombre.Contains("Visitante"))
+            {
+                return View("MenuUsuario", usuario);
+            }
+            return View(usuario);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Index(String correo, String contrasena)
+        {
+            if (correo != null && contrasena != null)
+            {
+                await Task.Run(() =>{ 
+                    usuario = GestorUsuarios.ConsultarUsuario(correo);
+                });
+                if (usuario != null && usuario.Contrasena.Contains(contrasena))
+                {
+                    return View("MenuUsuario");
+                }
+            }
             return View();
         }
 
@@ -22,15 +45,25 @@ namespace ApiRestCliente.Controllers.CUsuarios
         public async Task<IActionResult> CrearUsuario(
             [Bind("PrimerNombre,SegundoNombre,PrimerApellido,SegundoApellido,FechaNacimiento,Correo,Contrasena")] Usuario usuario)
         {
-            await Task.Run(() =>
+            if (ModelState.IsValid)
             {
-                usuario.Edad = CalcularEdad(usuario.FechaNacimiento);
-                GestorUsuarios.RegistrarUsuario(usuario);
-            });
-            return View("Index");
+                await Task.Run(() =>
+                {
+                    usuario.Edad = CalcularEdad(usuario.FechaNacimiento);
+                    GestorUsuarios.RegistrarUsuario(usuario);
+                });
+                return View("Index");
+            }
+           
+            return View();
         }
 
-        private int CalcularEdad(DateTime date)
+        public IActionResult MenuUsuario()
+        {
+            return View(usuario);
+        }
+
+        private static int CalcularEdad(DateTime date)
         {
             int edad = DateTime.Now.Year - date.Year;
             if (DateTime.Now.CompareTo(date) > 0)

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ApiRestCliente.Models.MUsuarios.Usuario>
+﻿@model ApiRestCliente.Models.MUsuarios.Usuario
 
 @{ 
     ViewData["Title"] = "Index";
@@ -12,21 +12,21 @@
             <form id="account" method="post" novalidate="novalidate">
                 <h5>Ingrese sus datos a continuación</h5>
                 <div class="form-group">
-                    <label for="Input_Email">Correo:</label>
-                    <input class="form-control" autocomplete="username" type="email" data-val="true" data-val-email="The Email field is not a valid e-mail address." data-val-required="The Email field is required." id="Input_Email" name="Input.Email" value="">
-                    <span class="text-danger field-validation-valid" data-valmsg-for="Input.Email" data-valmsg-replace="true"></span>
+                    <label asp-for="Correo"></label>
+                    <input asp-for="Correo" class="form-control" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="Input_Password">Contraseña:</label>
-                    <input class="form-control" autocomplete="current-password" type="password" data-val="true" data-val-required="The Password field is required." id="Input_Password" name="Input.Password">
-                    <span class="text-danger field-validation-valid" data-valmsg-for="Input.Password" data-valmsg-replace="true"></span>
+                    <label asp-for="Contrasena"></label>
+                    <input asp-for="Contrasena" class="form-control" type="password" />
+                    <span asp-validation-for="Contrasena" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <button id="login-submit" type="submit" class="btn btn-primary">Ingresar</button>
                 </div>
                 <div class="form-group">
                     <p>
-                        <a id="forgot-password" href="/Identity/Accoun  t/ForgotPassword">Recordar contraseña</a>
+                        <a>Recordar contraseña</a>
                     </p>
                     <p>
                         <a asp-action="CrearUsuario">Registrar un usuario nuevo</a>
