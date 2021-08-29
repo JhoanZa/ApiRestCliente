@@ -1,4 +1,5 @@
 ﻿using ApiRestCliente.Models;
+using ApiRestCliente.Models.MUsuarios;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

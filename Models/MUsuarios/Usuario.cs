@@ -6,10 +6,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ApiRestCliente.Models
+namespace ApiRestCliente.Models.MUsuarios
 {
     public class Usuario
     {
+        public Usuario()
+        {
+            TipoUsuario = 1;
+            PrimerNombre = "Visitante";
+            SegundoNombre = "";
+            PrimerApellido = "";
+            SegundoNombre = "";
+        }
 
         [JsonProperty(PropertyName = "tipoUsuario")]
         public int TipoUsuario { get; set; }
