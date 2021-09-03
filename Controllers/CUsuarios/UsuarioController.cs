@@ -15,10 +15,11 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             if (!usuario.PrimerNombre.Contains("Visitante"))
             {
-                return View("MenuUsuario", usuario);
+                return RedirectToAction(nameof(MenuUsuario), Usuario);
             }
             return View(usuario);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Index(String correo, String contrasena)
@@ -30,7 +31,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
                 });
                 if (usuario != null && usuario.Contrasena.Contains(contrasena))
                 {
-                    return View("MenuUsuario");
+                    return RedirectToAction(nameof(MenuUsuario));
                 }
             }
             return View();
@@ -40,6 +41,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CrearUsuario(
@@ -52,7 +54,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
                     usuario.Edad = CalcularEdad(usuario.FechaNacimiento);
                     GestorUsuarios.RegistrarUsuario(usuario);
                 });
-                return View("Index");
+                return RedirectToAction(nameof(Index));
             }
            
             return View();

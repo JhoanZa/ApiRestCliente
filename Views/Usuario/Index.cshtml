@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-md-4">
         <section>
-            <form id="account" method="post" novalidate="novalidate">
+            <form asp-action="Index">
                 <h5>Ingrese sus datos a continuación</h5>
                 <div class="form-group">
                     <label asp-for="Correo"></label>
@@ -22,17 +22,17 @@
                     <span asp-validation-for="Contrasena" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <button id="login-submit" type="submit" class="btn btn-primary">Ingresar</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a>Recordar contraseña</a>
-                    </p>
-                    <p>
-                        <a asp-action="CrearUsuario">Registrar un usuario nuevo</a>
-                    </p>
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
                 </div>
             </form>
+            <div class="form-group">
+                <p>
+                    <a>Recordar contraseña</a>
+                </p>
+                <p>
+                    <a asp-action="CrearUsuario">Registrar un usuario nuevo</a>
+                </p>
+            </div>
         </section>
     </div>
     <div class="col-md-6 col-md-offset-2">
