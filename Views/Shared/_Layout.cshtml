@@ -7,13 +7,16 @@
     <title>@ViewData["Title"] - ApiRestCliente</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/SideStyleSheet.css" />
+    <!--Boxicons CDN link-->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MercaLink</a>
-                
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -36,12 +39,56 @@
             </div>
         </nav>
     </header>
+    <div class="sidebar">
+        <div class="logo-details">
+            <i class='bx bxl-c-plus-plus'></i>
+            <span class="logo_name">MercaLink</span>
+
+        </div>
+        <ul class="nav-links">
+            <!--Inicio del segmento que no contiene submenu-->
+            @*<li>
+                    <a href="#">
+                        <i class='bx bx-grid-alt'></i>
+                        <span class="link_name">Dashboard</span>
+                    </a>
+                </li>*@
+            <!--Fin del segmento que no contiene submenu-->
+            <!--Inicio del segmento con submenu-->
+            <li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bx-book-alt'></i>
+                        <span class="link_name">Ajustes</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <!--Elementos del submenu-->
+                <ul class="sub-menu">
+                    <li><a asp-controller="Usuario" asp-action="DatosPersonales">Datos personales</a></li>
+                    <li><a asp-controller="Usuario" asp-action="DatosCredenciales">Credenciales</a></li>
+                    <li><a asp-controller="Usuario" asp-action="DatosResidencia">Residencia</a></li>
+                </ul>
+            </li>
+            <!--Fin del segmento con submenu-->
+        </ul>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    <!--Script usado para la sidebar-->
+    <script> 
+        let arrow = document.querySelectorAll(".arrow");
+        for (var i = 0; i < arrow.length; i++) {
+            arrow[i].addEventListener("click", (e) => {
+                let arrowParent = e.target.parentElement.parentElement;
+                arrowParent.classList.toggle("showMenu");
+            });
+        }
+    </script>
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2021 - ApiRestCliente - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>

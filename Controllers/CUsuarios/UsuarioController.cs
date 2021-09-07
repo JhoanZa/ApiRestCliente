@@ -15,7 +15,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             if (!usuario.PrimerNombre.Contains("Visitante"))
             {
-                return RedirectToAction(nameof(MenuUsuario), Usuario);
+                return RedirectToAction(actionName:"Index", controllerName:"Home", usuario);
             }
             return View(usuario);
         }
@@ -31,7 +31,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
                 });
                 if (usuario != null && usuario.Contrasena.Contains(contrasena))
                 {
-                    return RedirectToAction(nameof(MenuUsuario));
+                    return RedirectToAction(actionName:"Index", controllerName:"Home", usuario);
                 }
             }
             return View();
@@ -60,11 +60,19 @@ namespace ApiRestCliente.Controllers.CUsuarios
             return View();
         }
 
-        public IActionResult MenuUsuario()
+        public IActionResult DatosPersonales()
         {
             return View(usuario);
         }
 
+        public IActionResult DatosCredenciales()
+        {
+            return View(usuario);
+        }
+        public IActionResult DatosResidencia()
+        {
+            return View(usuario);
+        }
         private static int CalcularEdad(DateTime date)
         {
             int edad = DateTime.Now.Year - date.Year;
