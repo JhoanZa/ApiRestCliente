@@ -1,0 +1,17 @@
+﻿@model ApiRestCliente.Models.MUsuarios.Usuario
+
+<center>
+    <h1>Información de usuario</h1>
+</center>
+
+<div class="row">
+    <div class="col-md-5">
+        <section>
+            <br />
+            <h5>Nombre completo: </h5>
+            <label>@Html.DisplayFor(model => Model.PrimerNombre) @Html.DisplayFor(model => Model.SegundoNombre) @Html.DisplayFor(model => Model.PrimerApellido) @Html.DisplayFor(model => Model.SegundoApellido)</label>
+            <br />
+
+        </section>
+    </div>
+</div>

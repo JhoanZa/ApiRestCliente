@@ -1,1 +1,53 @@
-﻿<h2>Datos personales</h2>
+﻿@model ApiRestCliente.Models.MUsuarios.Usuario
+
+@{ ViewData["Title"] = "DatosPersonales"; }
+<center>
+    <h1>Datos personales</h1>
+</center>
+<form id="CambioDatosPersonales" method="post" novalidate="novalidate">
+    <div class="row">
+        <div class="col-md-5">
+            <section>
+                <br />
+                <h5>Nombres</h5>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="PrimerNombre"></label>
+                    <input asp-for="PrimerNombre" class="form-control" />
+                    <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SegundoNombre"></label>
+                    <input asp-for="SegundoNombre" class="form-control" />
+                    <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+                </div>
+                <br />
+                <h5>Apellidos</h5>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="PrimerApellido"></label>
+                    <input asp-for="PrimerApellido" class="form-control" />
+                    <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SegundoApellido"></label>
+                    <input asp-for="SegundoApellido" class="form-control" />
+                    <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                </div>
+                <br />
+                <h5>Información de nacimiento</h5>
+                <hr />
+                <div class="form-group">
+                    <label asp-for="FechaNacimiento"></label>
+                    <input asp-for="FechaNacimiento" class="form-control" type="date" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-5">
+        <section>
+            <!--Espacio para añadirle elementos a la derecha de la pagina-->
+        </section>
+    </div>
+    </div>
+</form>

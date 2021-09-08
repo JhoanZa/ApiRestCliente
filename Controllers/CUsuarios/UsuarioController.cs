@@ -60,6 +60,10 @@ namespace ApiRestCliente.Controllers.CUsuarios
             return View();
         }
 
+        public IActionResult InfoUsuario()
+        {
+            return View(usuario);
+        }
         public IActionResult DatosPersonales()
         {
             return View(usuario);
@@ -73,6 +77,12 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             return View(usuario);
         }
+        public IActionResult Salir()
+        {
+            usuario = new Usuario();
+            return RedirectToAction(actionName: "Index", controllerName: "Home", usuario);
+        }
+
         private static int CalcularEdad(DateTime date)
         {
             int edad = DateTime.Now.Year - date.Year;

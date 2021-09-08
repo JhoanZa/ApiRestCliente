@@ -41,23 +41,23 @@
     </header>
     <div class="sidebar">
         <div class="logo-details">
-            <i class='bx bxl-c-plus-plus'></i>
+            <i class='bx bx-store-alt'></i>
             <span class="logo_name">MercaLink</span>
 
         </div>
         <ul class="nav-links">
             <!--Inicio del segmento que no contiene submenu-->
             @*<li>
-                    <a href="#">
-                        <i class='bx bx-grid-alt'></i>
-                        <span class="link_name">Dashboard</span>
-                    </a>
-                </li>*@
+            <a href="#">
+                <i class='bx bx-grid-alt'></i>
+                <span class="link_name">Dashboard</span>
+            </a>
+        </li>*@
             <!--Fin del segmento que no contiene submenu-->
             <!--Inicio del segmento con submenu-->
             <li>
                 <div class="iocn-link">
-                    <a href="#">
+                    <a asp-controller="Usuario" asp-action="InfoUsuario">
                         <i class='bx bx-book-alt'></i>
                         <span class="link_name">Ajustes</span>
                     </a>
@@ -69,6 +69,12 @@
                     <li><a asp-controller="Usuario" asp-action="DatosCredenciales">Credenciales</a></li>
                     <li><a asp-controller="Usuario" asp-action="DatosResidencia">Residencia</a></li>
                 </ul>
+            </li>
+            <li>
+                <a asp-controller="Usuario" asp-action="Salir">
+                    <i class='bx bx-log-out'></i>
+                    <span class="link_name">Salir</span>
+                </a>
             </li>
             <!--Fin del segmento con submenu-->
         </ul>
