@@ -34,6 +34,16 @@ namespace ConsoleApp1.Gestores
             return null;
         }
 
+        public static bool ModificarUsuario(Usuario usuario)
+        {
+            if (VerificarUsuario(usuario.Correo))
+            {
+                _ = client.PutAsync($"api/Usuarios/{usuario.Correo}", usuario, new JsonMediaTypeFormatter()).Result;
+                return true;
+            }
+            return false;
+        }
+
         public static bool VerificarUsuario(String correo)
         {
            Usuario c = ConsultarUsuario(correo);

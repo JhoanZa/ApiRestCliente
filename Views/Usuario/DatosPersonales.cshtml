@@ -5,7 +5,6 @@
     <h1>Datos personales</h1>
 </center>
 <form id="CambioDatosPersonales" method="post" novalidate="novalidate">
-    <div class="row">
         <div class="col-md-5">
             <section>
                 <br />
@@ -42,12 +41,15 @@
                     <input asp-for="FechaNacimiento" class="form-control" type="date" />
                     <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                 </div>
+                <br />
+                <div>
+                    <button id="modificacion-submit" type="submit" class="btn btn-primary">Modificar</button>
+                </div>
             </section>
         </div>
         <div class="col-md-5">
         <section>
             <!--Espacio para añadirle elementos a la derecha de la pagina-->
         </section>
-    </div>
     </div>
 </form>

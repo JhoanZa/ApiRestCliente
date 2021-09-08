@@ -39,7 +39,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         public IActionResult CrearUsuario()
         {
-            return View();
+            return View(usuario);
         }
 
         [HttpPost]
@@ -68,11 +68,30 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             return View(usuario);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DatosPersonales(String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, DateTime FechaNacimiento)
+        {
+            usuario.PrimerNombre = PrimerNombre;
+            usuario.SegundoNombre = SegundoNombre ?? "";
+            usuario.PrimerApellido = PrimerApellido;
+            usuario.SegundoApellido = SegundoNombre ?? "";
+            usuario.FechaNacimiento = FechaNacimiento;
+            usuario.Edad = CalcularEdad(usuario.FechaNacimiento);
+            await Task.Run(() =>
+            {
+                GestorUsuarios.ModificarUsuario(usuario);
+                return RedirectToAction(nameof(InfoUsuario), usuario);
+            });
+            return View(usuario);
+            
+        }
 
         public IActionResult DatosCredenciales()
         {
             return View(usuario);
         }
+
         public IActionResult DatosResidencia()
         {
             return View(usuario);

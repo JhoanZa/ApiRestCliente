@@ -11,7 +11,23 @@
             <h5>Nombre completo: </h5>
             <label>@Html.DisplayFor(model => Model.PrimerNombre) @Html.DisplayFor(model => Model.SegundoNombre) @Html.DisplayFor(model => Model.PrimerApellido) @Html.DisplayFor(model => Model.SegundoApellido)</label>
             <br />
-
+            <h5>Fecha de nacimiento:</h5>
+            <label>@Html.DisplayFor(model => Model.FechaNacimiento)</label>
+            <h5>Edad:</h5>
+            <label>@Html.DisplayFor(model => Model.Edad) años</label>
+            <h5>Correo:</h5>
+            <label>@Html.DisplayFor(model => Model.Correo)</label>
+            
+            <br /> <br /> <br />
+            <p>
+                <a asp-action="DatosPersonales">Modificar datos personales</a>
+            </p>
+            <p>
+                <a asp-action="DatosCredenciales">Modificar credenciales</a>
+            </p>
+            <p>
+                <a asp-action="DatosResidencia">Modificar datos de residencia</a>
+            </p>
         </section>
     </div>
 </div>
