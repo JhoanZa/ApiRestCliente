@@ -91,6 +91,20 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             return View(usuario);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DatosCredenciales(String Contrasena)
+        {
+
+            usuario.Contrasena = Contrasena;
+            await Task.Run(() =>
+            {
+                GestorUsuarios.ModificarUsuario(usuario);
+                return RedirectToAction(nameof(InfoUsuario), usuario);
+            });
+            return View(usuario);
+
+        }
 
         public IActionResult DatosResidencia()
         {
