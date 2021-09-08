@@ -37,9 +37,8 @@
                 <h5>Información de nacimiento</h5>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="FechaNacimiento"></label>
-                    <input asp-for="FechaNacimiento" class="form-control" type="date" />
-                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    <label asp-for="Contrasena"></label>
+                    <input value="@Html.DisplayFor(model => Model.FechaNacimiento)" class="form-control" readonly />
                 </div>
                 <br />
                 <div>

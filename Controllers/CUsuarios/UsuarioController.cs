@@ -70,19 +70,22 @@ namespace ApiRestCliente.Controllers.CUsuarios
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DatosPersonales(String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido, DateTime FechaNacimiento)
+        public async Task<IActionResult> DatosPersonales(String PrimerNombre, String SegundoNombre, String PrimerApellido, String SegundoApellido)
         {
+            bool realizado = false;
+
             usuario.PrimerNombre = PrimerNombre;
             usuario.SegundoNombre = SegundoNombre ?? "";
             usuario.PrimerApellido = PrimerApellido;
-            usuario.SegundoApellido = SegundoNombre ?? "";
-            usuario.FechaNacimiento = FechaNacimiento;
-            usuario.Edad = CalcularEdad(usuario.FechaNacimiento);
+            usuario.SegundoApellido = SegundoApellido ?? "";
             await Task.Run(() =>
             {
-                GestorUsuarios.ModificarUsuario(usuario);
-                return RedirectToAction(nameof(InfoUsuario), usuario);
+                realizado = GestorUsuarios.ModificarUsuario(usuario);
             });
+            if (realizado)
+            {
+                return View("InfoUsuario",usuario);
+            }
             return View(usuario);
             
         }
@@ -95,13 +98,16 @@ namespace ApiRestCliente.Controllers.CUsuarios
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DatosCredenciales(String Contrasena)
         {
-
+            bool realizado = false;
             usuario.Contrasena = Contrasena;
             await Task.Run(() =>
             {
-                GestorUsuarios.ModificarUsuario(usuario);
-                return RedirectToAction(nameof(InfoUsuario), usuario);
+                realizado = GestorUsuarios.ModificarUsuario(usuario);
             });
+            if (realizado)
+            {
+                return View("InfoUsuario",usuario);
+            }
             return View(usuario);
 
         }
@@ -114,6 +120,21 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             usuario = new Usuario();
             return RedirectToAction(actionName: "Index", controllerName: "Home", usuario);
+        }
+
+        public IActionResult RecuperarContrasena()
+        {
+            return View(usuario);
+        }
+        [HttpPost]
+        public async Task<IActionResult> RecuperarContrasena(String Correo)
+        {
+            await Task.Run(() =>
+            {
+                Usuario usuarioP = GestorUsuarios.ConsultarUsuario(Correo);
+                usuario.Contrasena = usuarioP.Contrasena;
+            });
+            return View(usuario);
         }
 
         private static int CalcularEdad(DateTime date)

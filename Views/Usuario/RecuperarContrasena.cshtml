@@ -1,0 +1,35 @@
+﻿@model ApiRestCliente.Models.MUsuarios.Usuario
+<center>
+    <h2>Recuperar contraseña</h2>
+</center>
+
+<form id="RecuperarContraseña" method="post" novalidate="novalidate">
+    <div class="col-md-5">
+        <section>
+            <br />
+            <h5>Correo</h5>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" class="form-control" />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+            <br />
+            <h5>Contraseña</h5>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Contrasena"></label>
+                <input value="@Html.DisplayFor(model => Model.Contrasena)" class="form-control" readonly />
+            </div>
+            <br />
+            <div>
+                <button id="credenciales-submit" type="submit" class="btn btn-primary">Recuperar</button>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-5">
+        <section>
+            <!--Espacio para añadirle elementos a la derecha de la pagina-->
+        </section>
+    </div>
+</form>
