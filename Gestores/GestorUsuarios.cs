@@ -44,7 +44,7 @@ namespace ConsoleApp1.Gestores
             return false;
         }
 
-        public static bool VerificarUsuario(String correo)
+        private static bool VerificarUsuario(String correo)
         {
            Usuario c = ConsultarUsuario(correo);
             if (c == null)
