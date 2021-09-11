@@ -1,4 +1,5 @@
 ﻿using ApiRestCliente.Models.MDomicilios;
+using ApiRestCliente.Models.MProductos;
 using ApiRestCliente.Models.MUsuarios;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -136,7 +137,7 @@ namespace ApiRestCliente.Models
         public List<SelectListItem> Municipios { get; set; }
         public void AgregarMunicipios(List<Municipio> municipios) 
         {
-            if (Municipios.Count > 1)
+            if (Municipios.Count < 1)
             {
                 Municipios = new List<SelectListItem>();
                 Municipios.Add(new SelectListItem("----------", "10000"));
@@ -171,6 +172,8 @@ namespace ApiRestCliente.Models
 
         //Datos de producto
 
+        public List<Producto> Productos { get; set; }
+
         [JsonProperty(PropertyName = "idProducto")]
         public int IdProducto { get; set; }
 
@@ -184,7 +187,7 @@ namespace ApiRestCliente.Models
 
         [Required]
         [JsonProperty(PropertyName = "nombre")]
-        public String Nombre { get; set; }
+        public String NombreProducto { get; set; }
 
         [Required]
         [JsonProperty(PropertyName = "descripcion")]
@@ -198,5 +201,20 @@ namespace ApiRestCliente.Models
         [JsonProperty(PropertyName = "valorVenta")]
         public decimal ValorVenta { get; set; }
 
+
+        //Datos de las categorias
+        public List<SelectListItem> Categorias { get; set; }
+        public void AgregarMunicipios(List<Categoria> categorias)
+        {
+            if (Categorias.Count < 1)
+            {
+                Municipios = new List<SelectListItem>();
+                Municipios.Add(new SelectListItem("----------", "10000"));
+            }
+            foreach (Categoria c in categorias)
+            {
+                Municipios.Add(new SelectListItem(c.Nombre, String.Concat(c.IdCategoria)));
+            }
+        }
     }
 }
