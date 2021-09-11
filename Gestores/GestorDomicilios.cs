@@ -1,6 +1,7 @@
 ﻿using ApiRestCliente.Models.MDomicilios;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Formatting;
 
@@ -16,7 +17,7 @@ namespace ApiRestCliente.Gestores
         }
 
 
-        public static Domicilio ConsultarDomicilio(String correo)
+        public static List<Domicilio> ConsultarDomicilio(String correo)
         {
             Uri();
             var request = client.GetAsync($"/api/Domicilios/{correo}").Result;
@@ -24,7 +25,7 @@ namespace ApiRestCliente.Gestores
             if (request.IsSuccessStatusCode)
             {
                 var resultString = request.Content.ReadAsStringAsync().Result;
-                var Objeto = JsonConvert.DeserializeObject<Domicilio>(resultString);
+                var Objeto = JsonConvert.DeserializeObject<List<Domicilio>>(resultString);
                 return Objeto;
             }
             return null;
@@ -42,7 +43,7 @@ namespace ApiRestCliente.Gestores
 
         private static bool VerificarDomicilio(String correo)
         {
-            Domicilio c = ConsultarDomicilio(correo);
+            List<Domicilio> c = ConsultarDomicilio(correo);
             if (c == null)
             {
                 return false;

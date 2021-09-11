@@ -121,6 +121,17 @@ namespace ApiRestCliente.Models
                 }
             }
         }
+        public void AsignarMunicipio(int IdMunicipio)
+        {
+            foreach (SelectListItem d in Municipios)
+            {
+                if (d.Value.Equals(String.Concat(IdMunicipio)))
+                {
+                    NombreMunicipio = d.Text;
+                    break;
+                }
+            }
+        }
         //Datos de los municipios
         public List<SelectListItem> Municipios { get; set; }
         public void AgregarMunicipios(List<Municipio> municipios) 
@@ -140,5 +151,20 @@ namespace ApiRestCliente.Models
 
         public String NombreDepartamento { get; set; }
         public String NombreMunicipio { get; set; }
+
+        [Required(ErrorMessage = "El campo --Dirección-- es requerido.")]
+        [Display(Name = "Dirección")]
+        public String Direccion { get; set; }
+
+        public void CrearDomicilio(Domicilio domicilio)
+        {
+            if (domicilio != null)
+            {
+                NombreDepartamento = domicilio.NombreDepartamento ?? "";
+                NombreMunicipio = domicilio.NombreMunicipio ?? "";
+                Direccion = domicilio.Direccion ?? "";
+
+            }
+        }
     }
 }

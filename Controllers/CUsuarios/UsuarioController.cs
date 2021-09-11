@@ -6,6 +6,7 @@ using ApiRestCliente.Models;
 using ApiRestCliente.Gestores;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ApiRestCliente.Models.MDomicilios;
 
 namespace ApiRestCliente.Controllers.CUsuarios
 {
@@ -34,7 +35,12 @@ namespace ApiRestCliente.Controllers.CUsuarios
             {
                 await Task.Run(() =>{ 
                     Usuario Usuario = GestorUsuarios.ConsultarUsuario(correo);
+                    List<Domicilio> Domicilio = GestorDomicilios.ConsultarDomicilio(correo);
                     datos.CrearUsuario(Usuario);
+                    foreach (Domicilio domicilio in Domicilio)
+                    {
+                        datos.CrearDomicilio(domicilio);
+                    }
                 });
                 if (datos != null && datos.Contrasena.Contains(contrasena))
                 {
@@ -119,6 +125,34 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         }
 
+        public IActionResult DatosResidenciaP2()
+        {
+            return View(datos);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DatosCredencialesP2(String Direccion)
+        {
+            bool realizado = false;
+            datos.Direccion = Direccion;
+            Domicilio domicilio = new Domicilio();
+            domicilio.CorreoAsociado = datos.Correo;
+            domicilio.NombreDepartamento = datos.NombreDepartamento;
+            domicilio.NombreMunicipio = datos.NombreMunicipio;
+            domicilio.Direccion = datos.Direccion;
+            await Task.Run(() =>
+            {
+                realizado = GestorDomicilios.RegistrarDomicilio(domicilio);
+            });
+            if (realizado)
+            {
+                return View("InfoUsuario",datos);
+            }
+            return View(datos);
+
+        }
+
         public IActionResult DatosResidencia()
         {
             datos.AgregarDepartamento(GestorMunicipios.ConsultarDepartamento());
@@ -152,6 +186,10 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             datos.AgregarMunicipios(GestorMunicipios.ConsultarMunicipios(a));
             datos.AsignarDepartamento(a);
+        }
+        public void ObtenerMunicipio(int a)
+        {
+            datos.AsignarMunicipio(a);
         }
 
         private static int CalcularEdad(DateTime date)
