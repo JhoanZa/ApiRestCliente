@@ -17,7 +17,7 @@ namespace ApiRestCliente.Controllers
 
         public IActionResult Index()
         {
-            return View(UsuarioController.Usuario);
+            return View(UsuarioController.Datos);
         }
 
         public IActionResult Privacy()

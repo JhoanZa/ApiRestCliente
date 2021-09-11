@@ -1,3 +1,31 @@
-﻿<center>
+﻿@model ApiRestCliente.Models.ListaDatos
+<center>
     <h1>Datos de residencia</h1>
 </center>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="form-group">
+            <br /> <br />  <br />
+            <h5>Paso 1: Por favor ingrese los datos que se le piden a continuación:</h5>
+            <br />
+            <h5>Departamento:</h5>
+            @Html.DropDownList("Departamentos", Model.Departamentos, new { @class = "form-control ddl", id = "Departamentos", })
+            <br />
+            <button class="btn btn-primary">confirmar</button>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+
+        $(".ddl").on('change', function () {
+            var a = $("#Departamentos").val();
+            var ddl = $('#Municipios');
+            $.getJSON('/Usuario/ListaMunicipios', { a:a }, function (result) {
+            });
+        });
+    </script>
+}

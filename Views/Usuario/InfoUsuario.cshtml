@@ -1,4 +1,4 @@
-﻿@model ApiRestCliente.Models.MUsuarios.Usuario
+﻿@model ApiRestCliente.Models.ListaDatos
 
 <center>
     <h1>Información de usuario</h1>
@@ -8,6 +8,7 @@
     <div class="col-md-5">
         <section>
             <br />
+            <h3>Datos de identificación:</h3>
             <h5>Nombre completo: </h5>
             <label>@Html.DisplayFor(model => Model.PrimerNombre) @Html.DisplayFor(model => Model.SegundoNombre) @Html.DisplayFor(model => Model.PrimerApellido) @Html.DisplayFor(model => Model.SegundoApellido)</label>
             <br />
@@ -17,7 +18,10 @@
             <label>@Html.DisplayFor(model => Model.Edad) años</label>
             <h5>Correo:</h5>
             <label>@Html.DisplayFor(model => Model.Correo)</label>
-            
+            <br />
+            <h3>Datos de ubicación:</h3>
+            <h5>Departamento:</h5>
+            <label>@Html.DisplayFor(model => Model.NombreDepartamento)</label>
             <br /> <br /> <br />
             <p>
                 <a asp-action="DatosPersonales">Modificar datos personales</a>

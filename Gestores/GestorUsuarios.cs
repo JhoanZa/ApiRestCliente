@@ -1,15 +1,10 @@
-﻿using ApiRestCliente.Models;
-using ApiRestCliente.Models.MUsuarios;
+﻿using ApiRestCliente.Models.MUsuarios;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Formatting;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApp1.Gestores
+namespace ApiRestCliente.Gestores
 {
     class GestorUsuarios
     {

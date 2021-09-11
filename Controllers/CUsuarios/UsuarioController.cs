@@ -2,22 +2,28 @@
 using System;
 using System.Threading.Tasks;
 using ApiRestCliente.Models.MUsuarios;
-using ConsoleApp1.Gestores;
+using ApiRestCliente.Models;
+using ApiRestCliente.Gestores;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ApiRestCliente.Controllers.CUsuarios
 {
     public class UsuarioController : Controller
     {
-        private static Usuario usuario = new();
-        public static Usuario Usuario { get => usuario; set => usuario = value; }
+        //private static Usuario usuario = new();
+        //public static Usuario Usuario { get => usuario; set => usuario = value; }
+
+        private static ListaDatos datos = new();
+        public static ListaDatos Datos { get => datos; set => datos = value; }
 
         public IActionResult Index()
         {
-            if (!usuario.PrimerNombre.Contains("Visitante"))
+            if (!datos.PrimerNombre.Contains("Visitante"))
             {
-                return RedirectToAction(actionName:"Index", controllerName:"Home", usuario);
+                return RedirectToAction(actionName:"Index", controllerName:"Home", datos);
             }
-            return View(usuario);
+            return View(datos);
         }
 
         [HttpPost]
@@ -27,11 +33,12 @@ namespace ApiRestCliente.Controllers.CUsuarios
             if (correo != null && contrasena != null)
             {
                 await Task.Run(() =>{ 
-                    usuario = GestorUsuarios.ConsultarUsuario(correo);
+                    Usuario Usuario = GestorUsuarios.ConsultarUsuario(correo);
+                    datos.CrearUsuario(Usuario);
                 });
-                if (usuario != null && usuario.Contrasena.Contains(contrasena))
+                if (datos != null && datos.Contrasena.Contains(contrasena))
                 {
-                    return RedirectToAction(actionName:"Index", controllerName:"Home", usuario);
+                    return RedirectToAction(actionName:"Index", controllerName:"Home", datos);
                 }
             }
             return View();
@@ -39,7 +46,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         public IActionResult CrearUsuario()
         {
-            return View(usuario);
+            return View(datos);
         }
 
         [HttpPost]
@@ -62,11 +69,11 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         public IActionResult InfoUsuario()
         {
-            return View(usuario);
+            return View(datos);
         }
         public IActionResult DatosPersonales()
         {
-            return View(usuario);
+            return View(datos);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -74,57 +81,59 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             bool realizado = false;
 
-            usuario.PrimerNombre = PrimerNombre;
-            usuario.SegundoNombre = SegundoNombre ?? "";
-            usuario.PrimerApellido = PrimerApellido;
-            usuario.SegundoApellido = SegundoApellido ?? "";
+            datos.PrimerNombre = PrimerNombre;
+            datos.SegundoNombre = SegundoNombre ?? "";
+            datos.PrimerApellido = PrimerApellido;
+            datos.SegundoApellido = SegundoApellido ?? "";
             await Task.Run(() =>
             {
-                realizado = GestorUsuarios.ModificarUsuario(usuario);
+                realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
             });
             if (realizado)
             {
-                return View("InfoUsuario",usuario);
+                return View("InfoUsuario",datos);
             }
-            return View(usuario);
+            return View(datos);
             
         }
 
         public IActionResult DatosCredenciales()
         {
-            return View(usuario);
+            return View(datos);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DatosCredenciales(String Contrasena)
         {
             bool realizado = false;
-            usuario.Contrasena = Contrasena;
+            datos.Contrasena = Contrasena;
             await Task.Run(() =>
             {
-                realizado = GestorUsuarios.ModificarUsuario(usuario);
+                realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
             });
             if (realizado)
             {
-                return View("InfoUsuario",usuario);
+                return View("InfoUsuario",datos);
             }
-            return View(usuario);
+            return View(datos);
 
         }
 
         public IActionResult DatosResidencia()
         {
-            return View(usuario);
+            datos.AgregarDepartamento(GestorMunicipios.ConsultarDepartamento());
+            return View(datos);
         }
+     
         public IActionResult Salir()
         {
-            usuario = new Usuario();
-            return RedirectToAction(actionName: "Index", controllerName: "Home", usuario);
+            datos.EliminarUsuario();
+            return RedirectToAction(actionName: "Index", controllerName: "Home", datos);
         }
 
         public IActionResult RecuperarContrasena()
         {
-            return View(usuario);
+            return View(datos);
         }
         [HttpPost]
         public async Task<IActionResult> RecuperarContrasena(String Correo)
@@ -132,9 +141,17 @@ namespace ApiRestCliente.Controllers.CUsuarios
             await Task.Run(() =>
             {
                 Usuario usuarioP = GestorUsuarios.ConsultarUsuario(Correo);
-                usuario.Contrasena = usuarioP.Contrasena;
+                datos.Contrasena = usuarioP.Contrasena;
             });
-            return View(usuario);
+            return View(datos);
+        }
+
+        //Metodos que solo manipulan datos
+        [HttpGet]
+        public void ListaMunicipios(int a)
+        {
+            datos.AgregarMunicipios(GestorMunicipios.ConsultarMunicipios(a));
+            datos.AsignarDepartamento(a);
         }
 
         private static int CalcularEdad(DateTime date)
