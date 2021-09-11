@@ -35,7 +35,7 @@ namespace ApiRestCliente.Gestores
         {
             if (VerificarDomicilio(domicilio.CorreoAsociado))
             {
-                _ = client.PutAsync($"api/Domicilios/{domicilio.CorreoAsociado}", domicilio, new JsonMediaTypeFormatter()).Result;
+                _ = client.PutAsync($"api/Domicilios/{domicilio.Id}", domicilio, new JsonMediaTypeFormatter()).Result;
                 return true;
             }
             return false;

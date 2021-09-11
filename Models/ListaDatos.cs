@@ -148,6 +148,7 @@ namespace ApiRestCliente.Models
         }
 
         //Datos de domicilio
+        public int IdDomicilio { get; set; }
 
         public String NombreDepartamento { get; set; }
         public String NombreMunicipio { get; set; }
@@ -160,6 +161,7 @@ namespace ApiRestCliente.Models
         {
             if (domicilio != null)
             {
+                IdDomicilio = domicilio.Id;
                 NombreDepartamento = domicilio.NombreDepartamento ?? "";
                 NombreMunicipio = domicilio.NombreMunicipio ?? "";
                 Direccion = domicilio.Direccion ?? "";

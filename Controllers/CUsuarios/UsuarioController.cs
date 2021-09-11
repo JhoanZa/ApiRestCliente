@@ -132,18 +132,26 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DatosCredencialesP2(String Direccion)
-        {
+        public async Task<IActionResult> DatosResidenciaP2(String Direccion)
+        {   
             bool realizado = false;
             datos.Direccion = Direccion;
             Domicilio domicilio = new Domicilio();
+            domicilio.Id = datos.IdDomicilio;
             domicilio.CorreoAsociado = datos.Correo;
             domicilio.NombreDepartamento = datos.NombreDepartamento;
             domicilio.NombreMunicipio = datos.NombreMunicipio;
             domicilio.Direccion = datos.Direccion;
             await Task.Run(() =>
-            {
-                realizado = GestorDomicilios.RegistrarDomicilio(domicilio);
+            {   
+                if (datos.IdDomicilio != 0)
+                {
+                    realizado = GestorDomicilios.ModificarDomicilio(domicilio);
+                }
+                else
+                {
+                    realizado = GestorDomicilios.RegistrarDomicilio(domicilio);
+                }
             });
             if (realizado)
             {
