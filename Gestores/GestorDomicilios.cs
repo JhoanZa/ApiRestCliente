@@ -44,7 +44,7 @@ namespace ApiRestCliente.Gestores
         private static bool VerificarDomicilio(String correo)
         {
             List<Domicilio> c = ConsultarDomicilio(correo);
-            if (c == null)
+            if (c.Count == 0)
             {
                 return false;
             }

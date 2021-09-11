@@ -168,5 +168,35 @@ namespace ApiRestCliente.Models
 
             }
         }
+
+        //Datos de producto
+
+        [JsonProperty(PropertyName = "idProducto")]
+        public int IdProducto { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "correoVendedor")]
+        public String CorreoVendedor { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "categoria")]
+        public String Categoria { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "nombre")]
+        public String Nombre { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "descripcion")]
+        public String Descripcion { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "cantidadDisponible")]
+        public int CantidadDisponible { get; set; }
+
+        [Required]
+        [JsonProperty(PropertyName = "valorVenta")]
+        public decimal ValorVenta { get; set; }
+
     }
 }
