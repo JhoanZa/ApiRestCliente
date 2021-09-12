@@ -9,6 +9,17 @@ namespace ApiRestCliente.Models.MProductos
 {
     public class Producto
     {
+        public Producto()
+        {
+            IdProducto = 0;
+            CorreoVendedor = "";
+            Categoria = "";
+            Nombre = "";
+            Descripcion = "";
+            CantidadDisponible = 0;
+            ValorVenta = 0;
+        }
+
         public int IdProducto { get; set; }
 
         [Display(Name = "Correo del vendedor:")]

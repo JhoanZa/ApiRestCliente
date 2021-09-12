@@ -174,6 +174,23 @@ namespace ApiRestCliente.Models
 
         public List<Producto> Productos { get; set; }
 
+        public void CargarProductos(List<Producto> productos)
+        {
+            Productos = new List<Producto>();
+            if (Correo == null || Correo.Equals(""))
+            {
+                Productos.Add(new Producto());
+            }
+            else
+            {
+                foreach (Producto p1 in productos)
+                {
+
+                    Productos.Add(p1);
+                }
+            }
+            
+        }
         [JsonProperty(PropertyName = "idProducto")]
         public int IdProducto { get; set; }
 
