@@ -1,0 +1,48 @@
+﻿@model ApiRestCliente.Models.ListaDatos
+@{ ViewData["Title"] = "CategoriaP2"; }
+
+<center>
+    <h2>Registro de producto</h2>
+</center>
+
+<form id="registro" method="post" novalidate="novalidate">
+    <div class="row">
+        <div class="col-md-5">
+            <section>
+                <h5>Paso 2: Por favor ingrese los datos sobre el producto a continuación, cuando esté listo presione el botón para finalizar</h5>
+                <div class="form-group">
+                    <label asp-for="NombreCategoria"></label>
+                    <input asp-for="NombreCategoria" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label>Correo del vendedor:</label>
+                    <input asp-for="Correo" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NombreProducto"></label>
+                    <input asp-for="NombreProducto" class="form-control" />
+                    <span asp-validation-for="NombreProducto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Descripcion"></label>
+                    <input asp-for="Descripcion" class="form-control" />
+                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CantidadDisponible"></label>
+                    <input asp-for="CantidadDisponible" class="form-control" />
+                    <span asp-validation-for="CantidadDisponible" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ValorVenta"></label>
+                    <input asp-for="ValorVenta" class="form-control" />
+                    <span asp-validation-for="ValorVenta" class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="registro-submit" type="submit" class="btn btn-primary">Registrar</button>
+                </div>
+                
+            </section>
+        </div>
+    </div>
+</form>

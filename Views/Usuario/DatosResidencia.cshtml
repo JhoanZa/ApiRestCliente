@@ -10,7 +10,7 @@
             <h5>Paso 1: Por favor ingrese los datos que se le piden a continuación, cuando esté listo presione el botón para seguir</h5>
             <br />
             <h5>Departamento:</h5>
-            @Html.DropDownList("Departamentos", Model.Departamentos, new { @class = "form-control ddl", id = "Departamentos", })
+            @Html.DropDownList("Departamentos", Model.Departamentos, new { @class = "form-control ddl", id = "Departamentos"})
             <br />
             <a asp-controller="Usuario" asp-action="DatosResidenciaP2" class="btn btn-primary">Siguiente</a>
         </div>

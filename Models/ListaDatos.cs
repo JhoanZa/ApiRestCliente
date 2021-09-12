@@ -178,42 +178,64 @@ namespace ApiRestCliente.Models
         public int IdProducto { get; set; }
 
         [Required]
+        [Display(Name = "Correo del vendedor:")]
         [JsonProperty(PropertyName = "correoVendedor")]
         public String CorreoVendedor { get; set; }
 
         [Required]
+        [Display(Name = "Categoría:")]
         [JsonProperty(PropertyName = "categoria")]
-        public String Categoria { get; set; }
+        public String NombreCategoria { get; set; }
 
         [Required]
+        [Display(Name = "Nombre del producto:")]
         [JsonProperty(PropertyName = "nombre")]
         public String NombreProducto { get; set; }
 
         [Required]
+        [Display(Name = "Descripción:")]
         [JsonProperty(PropertyName = "descripcion")]
         public String Descripcion { get; set; }
 
         [Required]
+        [Display(Name = "Cantidad disponible:")]
         [JsonProperty(PropertyName = "cantidadDisponible")]
         public int CantidadDisponible { get; set; }
 
         [Required]
+        [Display(Name = "Costo del producto:")]
         [JsonProperty(PropertyName = "valorVenta")]
         public decimal ValorVenta { get; set; }
 
 
         //Datos de las categorias
         public List<SelectListItem> Categorias { get; set; }
-        public void AgregarMunicipios(List<Categoria> categorias)
+        public void AgregarCategorias(List<Categoria> categorias)
         {
+            if (Categorias == null)
+            {
+
+                Categorias = new List<SelectListItem>();
+            }
             if (Categorias.Count < 1)
             {
-                Municipios = new List<SelectListItem>();
-                Municipios.Add(new SelectListItem("----------", "10000"));
+                Categorias.Add(new SelectListItem("----------", "10000"));
             }
             foreach (Categoria c in categorias)
             {
-                Municipios.Add(new SelectListItem(c.Nombre, String.Concat(c.IdCategoria)));
+                Categorias.Add(new SelectListItem(c.Nombre, String.Concat(c.IdCategoria)));
+            }
+        }
+
+        public void AsignarCategoria(int IdCategoria)
+        {
+            foreach (SelectListItem c in Categorias)
+            {
+                if (c.Value.Equals(String.Concat(IdCategoria)))
+                {
+                    NombreCategoria = c.Text;
+                    break;
+                }
             }
         }
     }

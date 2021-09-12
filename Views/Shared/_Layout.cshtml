@@ -71,6 +71,21 @@
                 </ul>
             </li>
             <li>
+                <div class="iocn-link">
+                    <a asp-controller="Producto" asp-action="Index">
+                        <i class='bx bxs-package'></i>
+                        <span class="link_name">Productos</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <!--Elementos del submenu-->
+                <ul class="sub-menu">
+                    <li><a asp-controller="Usuario" asp-action="DatosPersonales">Datos personales</a></li>
+                    <li><a asp-controller="Usuario" asp-action="DatosCredenciales">Credenciales</a></li>
+                    <li><a asp-controller="Usuario" asp-action="DatosResidencia">Residencia</a></li>
+                </ul>
+            </li>
+            <li>
                 <a asp-controller="Usuario" asp-action="Salir">
                     <i class='bx bx-log-out'></i>
                     <span class="link_name">Salir</span>
