@@ -2,6 +2,7 @@
 using ApiRestCliente.Gestores;
 using ApiRestCliente.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace ApiRestCliente.Controllers.CProducto
 {
@@ -22,6 +23,12 @@ namespace ApiRestCliente.Controllers.CProducto
         {
             return View(datos);
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> CategoriaP2(string NombreProducto, string Descripcion, int CantidadDisponible, decimal ValorVenta)
+        //{
+
+        //}
 
 
         //Metodos para manipular los datos

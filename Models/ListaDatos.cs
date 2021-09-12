@@ -211,12 +211,8 @@ namespace ApiRestCliente.Models
         //Datos de las categorias
         public List<SelectListItem> Categorias { get; set; }
         public void AgregarCategorias(List<Categoria> categorias)
-        {
-            if (Categorias == null)
-            {
-
-                Categorias = new List<SelectListItem>();
-            }
+        {    
+            Categorias = new List<SelectListItem>();
             if (Categorias.Count < 1)
             {
                 Categorias.Add(new SelectListItem("----------", "10000"));
