@@ -19,11 +19,27 @@ namespace ApiRestCliente.Models
         {
             Usuario = new Usuario();
             Domicilio = new Domicilio();
+            Producto = new Producto();
         }
         public void EliminarUsuario()
         {
             Usuario = new Usuario();
             Domicilio = new Domicilio();
+            Producto = new Producto();
+        }
+
+
+        //Datos de domicilio
+        public Domicilio Domicilio { get; set; }
+
+        public int IdDomicilio { get; set; }
+
+        public void CrearDomicilio(Domicilio domicilio)
+        {
+            if (domicilio != null)
+            {
+                Domicilio = domicilio;
+            }
         }
 
         //Datos relacionados con los departamentos
@@ -83,22 +99,9 @@ namespace ApiRestCliente.Models
             }
         }
 
-        //Datos de domicilio
-
-        public Domicilio Domicilio { get; set; }
-
-        public int IdDomicilio { get; set; }
-
-        public void CrearDomicilio(Domicilio domicilio)
-        {
-            if (domicilio != null)
-            {
-                Domicilio = domicilio;
-            }
-        }
-
         //Datos de producto
 
+        public Producto Producto { get; set; }
         public List<Producto> Productos { get; set; }
 
         public void CargarProductos(List<Producto> productos)
@@ -118,40 +121,7 @@ namespace ApiRestCliente.Models
             }
             
         }
-        [JsonProperty(PropertyName = "idProducto")]
-        public int IdProducto { get; set; }
-
-        [Required]
-        [Display(Name = "Correo del vendedor:")]
-        [JsonProperty(PropertyName = "correoVendedor")]
-        public String CorreoVendedor { get; set; }
-
-        [Required]
-        [Display(Name = "Categoría:")]
-        [JsonProperty(PropertyName = "categoria")]
-        public String NombreCategoria { get; set; }
-
-        [Required]
-        [Display(Name = "Nombre del producto:")]
-        [JsonProperty(PropertyName = "nombre")]
-        public String NombreProducto { get; set; }
-
-        [Required]
-        [Display(Name = "Descripción:")]
-        [JsonProperty(PropertyName = "descripcion")]
-        public String Descripcion { get; set; }
-
-        [Required]
-        [Display(Name = "Cantidad disponible:")]
-        [JsonProperty(PropertyName = "cantidadDisponible")]
-        public int CantidadDisponible { get; set; }
-
-        [Required]
-        [Display(Name = "Costo del producto:")]
-        [JsonProperty(PropertyName = "valorVenta")]
-        public decimal ValorVenta { get; set; }
-
-
+        
         //Datos de las categorias
         public List<SelectListItem> Categorias { get; set; }
         public void AgregarCategorias(List<Categoria> categorias)
@@ -173,7 +143,7 @@ namespace ApiRestCliente.Models
             {
                 if (c.Value.Equals(String.Concat(IdCategoria)))
                 {
-                    NombreCategoria = c.Text;
+                    Producto.Categoria = c.Text;
                     break;
                 }
             }

@@ -33,22 +33,20 @@ namespace ApiRestCliente.Controllers.CProducto
         public async Task<IActionResult> CategoriaP2(string NombreProducto, string Descripcion, int CantidadDisponible, decimal ValorVenta)
         {
             bool realizado = false;
-            Producto producto = new Producto();
-            producto.CorreoVendedor = datos.Usuario.Correo;
-            producto.Categoria = datos.NombreCategoria;
-            producto.Nombre = NombreProducto;
-            producto.Descripcion = Descripcion;
-            producto.CantidadDisponible = CantidadDisponible;
-            producto.ValorVenta = ValorVenta;
+            datos.Producto.CorreoVendedor = datos.Usuario.Correo;
+            datos.Producto.Nombre = NombreProducto;
+            datos.Producto.Descripcion = Descripcion;
+            datos.Producto.CantidadDisponible = CantidadDisponible;
+            datos.Producto.ValorVenta = ValorVenta;
             await Task.Run(() =>
             {
-                if (datos.IdProducto != 0)
+                if (datos.Producto.IdProducto != 0)
                 {
-                    realizado = GestorProductos.ModificarProducto(producto);
+                    realizado = GestorProductos.ModificarProducto(datos.Producto);
                 }
                 else
                 {
-                    realizado = GestorProductos.RegistrarProducto(producto);
+                    realizado = GestorProductos.RegistrarProducto(datos.Producto);
                 }
             });
             if (realizado)

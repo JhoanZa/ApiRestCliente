@@ -11,32 +11,32 @@
             <section>
                 <h5>Paso 2: Por favor ingrese los datos sobre el producto a continuación, cuando esté listo presione el botón para finalizar</h5>
                 <div class="form-group">
-                    <label asp-for="NombreCategoria"></label>
-                    <input asp-for="NombreCategoria" class="form-control" readonly />
+                    <label asp-for="Producto.Categoria"></label>
+                    <input asp-for="Producto.Categoria" class="form-control" readonly />
                 </div>
                 <div class="form-group">
                     <label>Correo del vendedor:</label>
                     <input asp-for="Usuario.Correo" class="form-control" readonly />
                 </div>
                 <div class="form-group">
-                    <label asp-for="NombreProducto"></label>
-                    <input asp-for="NombreProducto" class="form-control" />
-                    <span asp-validation-for="NombreProducto" class="text-danger"></span>
+                    <label asp-for="Producto.Nombre"></label>
+                    <input name="NombreProducto" class="form-control" />
+                    <span asp-validation-for="Producto.Nombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Descripcion"></label>
-                    <input asp-for="Descripcion" class="form-control" />
-                    <span asp-validation-for="Descripcion" class="text-danger"></span>
+                    <label asp-for="Producto.Descripcion"></label>
+                    <input name="Descripcion" class="form-control" />
+                    <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="CantidadDisponible"></label>
-                    <input asp-for="CantidadDisponible" class="form-control" />
-                    <span asp-validation-for="CantidadDisponible" class="text-danger"></span>
+                    <label asp-for="Producto.CantidadDisponible"></label>
+                    <input name="CantidadDisponible" class="form-control" />
+                    <span asp-validation-for="Producto.CantidadDisponible" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="ValorVenta"></label>
-                    <input asp-for="ValorVenta" class="form-control" />
-                    <span asp-validation-for="ValorVenta" class="text-danger"></span>
+                    <label asp-for="Producto.ValorVenta"></label>
+                    <input name="ValorVenta" class="form-control" />
+                    <span asp-validation-for="Producto.ValorVenta" class="text-danger"></span>
                 </div>
                 <div>
                     <button id="registro-submit" type="submit" class="btn btn-primary">Registrar</button>
