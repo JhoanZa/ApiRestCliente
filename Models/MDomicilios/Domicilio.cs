@@ -9,6 +9,12 @@ namespace ApiRestCliente.Models.MDomicilios
 {
     public class Domicilio
     {
+        public Domicilio()
+        {
+            Direccion = "";
+            NombreDepartamento = "";
+            NombreMunicipio = "";
+        }
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 

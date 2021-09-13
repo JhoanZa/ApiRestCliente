@@ -34,7 +34,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
             if (Correo != null && Contrasena != null)
             {
                 await Task.Run(() =>{
-                    datos.CrearUsuario(GestorUsuarios.ConsultarUsuario(Correo));
+                    datos.Usuario = GestorUsuarios.ConsultarUsuario(Correo);
                     List<Domicilio> Domicilio = GestorDomicilios.ConsultarDomicilio(Correo);
                     foreach (Domicilio domicilio in Domicilio)
                     {
@@ -92,7 +92,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
             datos.Usuario.SegundoApellido = SegundoApellido ?? "";
             await Task.Run(() =>
             {
-                realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
+                realizado = GestorUsuarios.ModificarUsuario(datos.Usuario);
             });
             if (realizado)
             {
@@ -114,7 +114,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
             datos.Usuario.Contrasena = Contrasena;
             await Task.Run(() =>
             {
-                realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
+                realizado = GestorUsuarios.ModificarUsuario(datos.Usuario);
             });
             if (realizado)
             {
@@ -134,22 +134,16 @@ namespace ApiRestCliente.Controllers.CUsuarios
         public async Task<IActionResult> DatosResidenciaP2(String Direccion)
         {   
             bool realizado = false;
-            datos.Direccion = Direccion;
-            Domicilio domicilio = new Domicilio();
-            domicilio.Id = datos.IdDomicilio;
-            domicilio.CorreoAsociado = datos.Usuario.Correo;
-            domicilio.NombreDepartamento = datos.NombreDepartamento;
-            domicilio.NombreMunicipio = datos.NombreMunicipio;
-            domicilio.Direccion = datos.Direccion;
+            datos.Domicilio.Direccion = Direccion;
             await Task.Run(() =>
             {   
-                if (datos.IdDomicilio != 0)
+                if (datos.Domicilio.Id != 0)
                 {
-                    realizado = GestorDomicilios.ModificarDomicilio(domicilio);
+                    realizado = GestorDomicilios.ModificarDomicilio(datos.Domicilio);
                 }
                 else
                 {
-                    realizado = GestorDomicilios.RegistrarDomicilio(domicilio);
+                    realizado = GestorDomicilios.RegistrarDomicilio(datos.Domicilio);
                 }
             });
             if (realizado)

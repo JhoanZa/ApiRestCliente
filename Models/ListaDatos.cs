@@ -18,21 +18,15 @@ namespace ApiRestCliente.Models
         public void IniciarUsuario()
         {
             Usuario = new Usuario();
-        }
-
-        public void CrearUsuario(Usuario usuario)
-        {
-            Usuario = usuario;
-        }
-        public Usuario GenerarUsuario()
-        {
-            return Usuario;
+            Domicilio = new Domicilio();
         }
         public void EliminarUsuario()
         {
             Usuario = new Usuario();
+            Domicilio = new Domicilio();
         }
 
+        //Datos relacionados con los departamentos
         public List<SelectListItem> Departamentos { get; set; }
         public void AgregarDepartamento(List<Departamento> departamento)
         {
@@ -57,23 +51,24 @@ namespace ApiRestCliente.Models
             {
                 if (d.Value.Equals(String.Concat(IdDepartamento)))
                 {
-                    NombreDepartamento = d.Text;
+                    Domicilio.NombreDepartamento = d.Text;
                     break;
                 }
             }
         }
+        
+        //Datos relacionados con los municipios
         public void AsignarMunicipio(int IdMunicipio)
         {
             foreach (SelectListItem d in Municipios)
             {
                 if (d.Value.Equals(String.Concat(IdMunicipio)))
                 {
-                    NombreMunicipio = d.Text;
+                    Domicilio.NombreMunicipio = d.Text;
                     break;
                 }
             }
         }
-        //Datos de los municipios
         public List<SelectListItem> Municipios { get; set; }
         public void AgregarMunicipios(List<Municipio> municipios) 
         {
@@ -89,24 +84,16 @@ namespace ApiRestCliente.Models
         }
 
         //Datos de domicilio
+
+        public Domicilio Domicilio { get; set; }
+
         public int IdDomicilio { get; set; }
-
-        public String NombreDepartamento { get; set; }
-        public String NombreMunicipio { get; set; }
-
-        [Required(ErrorMessage = "El campo --Dirección-- es requerido.")]
-        [Display(Name = "Dirección")]
-        public String Direccion { get; set; }
 
         public void CrearDomicilio(Domicilio domicilio)
         {
             if (domicilio != null)
             {
-                IdDomicilio = domicilio.Id;
-                NombreDepartamento = domicilio.NombreDepartamento ?? "";
-                NombreMunicipio = domicilio.NombreMunicipio ?? "";
-                Direccion = domicilio.Direccion ?? "";
-
+                Domicilio = domicilio;
             }
         }
 
