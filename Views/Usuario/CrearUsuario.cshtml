@@ -10,29 +10,29 @@
             <section>
                 <h5>Ingrese sus datos personales a continuación</h5>
                 <div class="form-group">
-                    <label asp-for="PrimerNombre"></label>
-                    <input asp-for="PrimerNombre" class="form-control" />
-                    <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+                    <label asp-for="Usuario.PrimerNombre"></label>
+                    <input asp-for="Usuario.PrimerNombre" class="form-control" />
+                    <span asp-validation-for="Usuario.PrimerNombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="SegundoNombre"></label>
-                    <input asp-for="SegundoNombre" class="form-control" />
-                    <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+                    <label asp-for="Usuario.SegundoNombre"></label>
+                    <input asp-for="Usuario.SegundoNombre" class="form-control" />
+                    <span asp-validation-for="Usuario.SegundoNombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="PrimerApellido"></label>
-                    <input asp-for="PrimerApellido" class="form-control" />
-                    <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+                    <label asp-for="Usuario.PrimerApellido"></label>
+                    <input asp-for="Usuario.PrimerApellido" class="form-control" />
+                    <span asp-validation-for="Usuario.PrimerApellido" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="SegundoApellido"></label>
-                    <input asp-for="SegundoApellido" class="form-control" />
-                    <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+                    <label asp-for="Usuario.SegundoApellido"></label>
+                    <input asp-for="Usuario.SegundoApellido" class="form-control" />
+                    <span asp-validation-for="Usuario.SegundoApellido" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="FechaNacimiento"></label>
-                    <input asp-for="FechaNacimiento" class="form-control" type="date" />
-                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                    <label asp-for="Usuario.FechaNacimiento"></label>
+                    <input asp-for="Usuario.FechaNacimiento" class="form-control" type="date" />
+                    <span asp-validation-for="Usuario.FechaNacimiento" class="text-danger"></span>
                 </div>
             </section>
         </div>
@@ -40,14 +40,14 @@
             <section>
                 <h5>Ingrese sus datos de acceso a continuación:</h5>
                 <div class="form-group">
-                    <label asp-for="Correo"></label>
-                    <input asp-for="Correo" class="form-control" />
-                    <span asp-validation-for="Correo" class="text-danger"></span>
+                    <label asp-for="Usuario.Correo"></label>
+                    <input asp-for="Usuario.Correo" class="form-control" />
+                    <span asp-validation-for="Usuario.Correo" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Contrasena"></label>
-                    <input asp-for="Contrasena" class="form-control" type="password" />
-                    <span asp-validation-for="Contrasena" class="text-danger"></span>
+                    <label asp-for="Usuario.Contrasena"></label>
+                    <input asp-for="Usuario.Contrasena" class="form-control" type="password" />
+                    <span asp-validation-for="Usuario.Contrasena" class="text-danger"></span>
                 </div>
                 <div>
                     <button id="registro-submit" type="submit" class="btn btn-primary">Registrar</button>

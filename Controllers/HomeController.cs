@@ -17,6 +17,10 @@ namespace ApiRestCliente.Controllers
 
         public IActionResult Index()
         {
+            if (UsuarioController.Datos.Usuario == null)
+            {
+                UsuarioController.Datos.IniciarUsuario();
+            }
             return View(UsuarioController.Datos);
         }
 

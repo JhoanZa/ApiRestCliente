@@ -34,7 +34,7 @@ namespace ApiRestCliente.Controllers.CProducto
         {
             bool realizado = false;
             Producto producto = new Producto();
-            producto.CorreoVendedor = datos.Correo;
+            producto.CorreoVendedor = datos.Usuario.Correo;
             producto.Categoria = datos.NombreCategoria;
             producto.Nombre = NombreProducto;
             producto.Descripcion = Descripcion;
@@ -53,6 +53,7 @@ namespace ApiRestCliente.Controllers.CProducto
             });
             if (realizado)
             {
+                datos.CargarProductos(GestorProductos.ConsultarProductos());
                 return View("Index", datos);
             }
             return View("Index");

@@ -10,16 +10,16 @@
             <h5>Correo</h5>
             <hr />
             <div class="form-group">
-                <label asp-for="Correo"></label>
-                <input asp-for="Correo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
+                <label asp-for="Usuario.Correo"></label>
+                <input asp-for="Usuario.Correo" class="form-control" />
+                <span asp-validation-for="Usuario.Correo" class="text-danger"></span>
             </div>
             <br />
             <h5>Contraseña</h5>
             <hr />
             <div class="form-group">
-                <label asp-for="Contrasena"></label>
-                <input value="@Html.DisplayFor(model => Model.Contrasena)" class="form-control" readonly />
+                <label asp-for="Usuario.Contrasena"></label>
+                <input value="@Html.DisplayFor(model => Model.Usuario.Contrasena)" class="form-control" readonly />
             </div>
             <br />
             <div>

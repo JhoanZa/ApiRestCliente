@@ -20,7 +20,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         public IActionResult Index()
         {
-            if (!datos.PrimerNombre.Contains("Visitante"))
+            if (!datos.Usuario.PrimerNombre.Contains("Visitante"))
             {
                 return RedirectToAction(actionName:"Index", controllerName:"Home", datos);
             }
@@ -29,20 +29,19 @@ namespace ApiRestCliente.Controllers.CUsuarios
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Index(String correo, String contrasena)
+        public async Task<IActionResult> Index(String Correo, String Contrasena)
         {
-            if (correo != null && contrasena != null)
+            if (Correo != null && Contrasena != null)
             {
-                await Task.Run(() =>{ 
-                    Usuario Usuario = GestorUsuarios.ConsultarUsuario(correo);
-                    List<Domicilio> Domicilio = GestorDomicilios.ConsultarDomicilio(correo);
-                    datos.CrearUsuario(Usuario);
+                await Task.Run(() =>{
+                    datos.CrearUsuario(GestorUsuarios.ConsultarUsuario(Correo));
+                    List<Domicilio> Domicilio = GestorDomicilios.ConsultarDomicilio(Correo);
                     foreach (Domicilio domicilio in Domicilio)
                     {
-                        datos.CrearDomicilio(domicilio);
+                            datos.CrearDomicilio(domicilio);
                     }
                 });
-                if (datos != null && datos.Contrasena.Contains(contrasena))
+                if (datos != null && datos.Usuario.Contrasena.Contains(Contrasena))
                 {
                     return RedirectToAction(actionName:"Index", controllerName:"Home", datos);
                 }
@@ -87,10 +86,10 @@ namespace ApiRestCliente.Controllers.CUsuarios
         {
             bool realizado = false;
 
-            datos.PrimerNombre = PrimerNombre;
-            datos.SegundoNombre = SegundoNombre ?? "";
-            datos.PrimerApellido = PrimerApellido;
-            datos.SegundoApellido = SegundoApellido ?? "";
+            datos.Usuario.PrimerNombre = PrimerNombre;
+            datos.Usuario.SegundoNombre = SegundoNombre ?? "";
+            datos.Usuario.PrimerApellido = PrimerApellido;
+            datos.Usuario.SegundoApellido = SegundoApellido ?? "";
             await Task.Run(() =>
             {
                 realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
@@ -112,7 +111,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
         public async Task<IActionResult> DatosCredenciales(String Contrasena)
         {
             bool realizado = false;
-            datos.Contrasena = Contrasena;
+            datos.Usuario.Contrasena = Contrasena;
             await Task.Run(() =>
             {
                 realizado = GestorUsuarios.ModificarUsuario(datos.GenerarUsuario());
@@ -138,7 +137,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
             datos.Direccion = Direccion;
             Domicilio domicilio = new Domicilio();
             domicilio.Id = datos.IdDomicilio;
-            domicilio.CorreoAsociado = datos.Correo;
+            domicilio.CorreoAsociado = datos.Usuario.Correo;
             domicilio.NombreDepartamento = datos.NombreDepartamento;
             domicilio.NombreMunicipio = datos.NombreMunicipio;
             domicilio.Direccion = datos.Direccion;
@@ -183,7 +182,7 @@ namespace ApiRestCliente.Controllers.CUsuarios
             await Task.Run(() =>
             {
                 Usuario usuarioP = GestorUsuarios.ConsultarUsuario(Correo);
-                datos.Contrasena = usuarioP.Contrasena;
+                datos.Usuario.Contrasena = usuarioP.Contrasena;
             });
             return View(datos);
         }

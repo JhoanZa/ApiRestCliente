@@ -12,85 +12,25 @@ namespace ApiRestCliente.Models
 {
     public class ListaDatos
     {
-        public ListaDatos()
+        //Datos de usuario y metodos para su respectiva gestion
+        public Usuario Usuario { get; set; }
+
+        public void IniciarUsuario()
         {
-            TipoUsuario = 1;
-            PrimerNombre = "Visitante";
-            SegundoNombre = "";
-            PrimerApellido = "";
-            SegundoNombre = "";
+            Usuario = new Usuario();
         }
-
-        [JsonProperty(PropertyName = "tipoUsuario")]
-        public int TipoUsuario { get; set; }
-
-        [Required(ErrorMessage = "El campo --Primer nombre-- es requerido.")]
-        [Display(Name = "Primer nombre:")]
-        [JsonProperty(PropertyName = "primerNombre")]
-        public String PrimerNombre { get; set; }
-
-        [Display(Name = "Segundo nombre:")]
-        [JsonProperty(PropertyName = "segundoNombre")]
-        public String SegundoNombre { get; set; }
-
-        [Required(ErrorMessage = "El campo --Primer apellido-- es requerido.")]
-        [Display(Name = "Primer apellido:")]
-        [JsonProperty(PropertyName = "primerApellido")]
-        public String PrimerApellido { get; set; }
-
-        [Display(Name = "Segundo apellido:")]
-        [JsonProperty(PropertyName = "segundoApellido")]
-        public String SegundoApellido { get; set; }
-
-        [Required(ErrorMessage = "El campo --Fecha de nacimiento-- es requerido")]
-        [Display(Name = "Fecha de nacimiento:")]
-        [JsonProperty(PropertyName = "fechaNacimiento")]
-        public DateTime FechaNacimiento { get; set; }
-
-        [Required(ErrorMessage = "El campo --Edad- es requerido.")]
-        [Display(Name = "Edad:")]
-        [JsonProperty(PropertyName = "edad")]
-        public int Edad { get; set; }
-
-        [Required(ErrorMessage = "El campo --Correo-- es requerido.")]
-        [Display(Name = "Correo:")]
-        [JsonProperty(PropertyName = "correo")]
-        public String Correo { get; set; }
-
-        [Required(ErrorMessage = "El campo --contraseña-- es requerido.")]
-        [Display(Name = "Contraseña:")]
-        [JsonProperty(PropertyName = "contrasena")]
-        public String Contrasena { get; set; }
-
 
         public void CrearUsuario(Usuario usuario)
         {
-            TipoUsuario = usuario.TipoUsuario;
-            PrimerNombre = usuario.PrimerNombre;
-            SegundoNombre = usuario.SegundoNombre;
-            PrimerApellido = usuario.PrimerApellido;
-            SegundoApellido = usuario.SegundoApellido;
-            FechaNacimiento = usuario.FechaNacimiento;
-            Edad = usuario.Edad;
-            Correo = usuario.Correo;
-            Contrasena = usuario.Contrasena;
+            Usuario = usuario;
         }
         public Usuario GenerarUsuario()
         {
-            Usuario usuario = new Usuario(TipoUsuario, PrimerNombre, SegundoNombre, PrimerApellido, SegundoApellido, FechaNacimiento, Edad, Correo, Contrasena);
-            return usuario;
+            return Usuario;
         }
         public void EliminarUsuario()
         {
-            TipoUsuario = 1;
-            PrimerNombre = "Visitante";
-            SegundoNombre = "";
-            PrimerApellido = "";
-            SegundoApellido = "";
-            FechaNacimiento = new DateTime().AddDays(0).AddMonths(0).AddYears(0);
-            Edad = 0;
-            Correo = "";
-            Contrasena = "";
+            Usuario = new Usuario();
         }
 
         public List<SelectListItem> Departamentos { get; set; }
@@ -177,7 +117,7 @@ namespace ApiRestCliente.Models
         public void CargarProductos(List<Producto> productos)
         {
             Productos = new List<Producto>();
-            if (Correo == null || Correo.Equals(""))
+            if (Usuario.Correo == null || Usuario.Correo.Equals(""))
             {
                 Productos.Add(new Producto());
             }
