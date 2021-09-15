@@ -47,9 +47,10 @@ namespace ApiRestCliente.Models
             if (Departamentos == null)
             {
                 Departamentos = new List<SelectListItem>();
-                Municipios = new List<SelectListItem>();
-                Departamentos.Add(new SelectListItem("----------","10000"));
-                Municipios.Add(new SelectListItem("----------", "10000"));
+            }
+            if (Departamentos.Count < 1)
+            {
+                Departamentos.Add(new SelectListItem("----------", "10000"));
             }
             if (Departamentos.Count == 1)
             {
@@ -79,6 +80,8 @@ namespace ApiRestCliente.Models
                 if (d.Value.Equals(String.Concat(IdMunicipio)))
                 {
                     Domicilio.NombreMunicipio = d.Text;
+                    Municipios.Clear();
+                    Departamentos.Clear();
                     break;
                 }
             }
@@ -86,9 +89,12 @@ namespace ApiRestCliente.Models
         public List<SelectListItem> Municipios { get; set; }
         public void AgregarMunicipios(List<Municipio> municipios) 
         {
-            if (Municipios.Count < 1)
+            if (Municipios == null)
             {
                 Municipios = new List<SelectListItem>();
+            }
+            if (Municipios.Count < 1)
+            {
                 Municipios.Add(new SelectListItem("----------", "10000"));
             }
             foreach (Municipio m in municipios)
@@ -115,13 +121,30 @@ namespace ApiRestCliente.Models
         }   
         public List<Producto> Productos { get; set; }
 
+        public void CargarProductosGeneral(List<Producto> productos)
+        {
+            if (Productos == null)
+            {
+                Productos = new List<Producto>();
+            }
+            else
+            {
+                Productos.Clear();
+            }
+            foreach (Producto p1 in productos)
+            {
+
+                Productos.Add(p1);
+            }
+
+        }
         public void CargarProductos(List<Producto> productos)
         {
             Productos = new List<Producto>();
-            if (Usuario.Correo == null || Usuario.Correo.Equals(""))
-            {
-                Productos.Add(new Producto());
-            }
+                if (Usuario.Correo == null || Usuario.Correo.Equals(""))
+                {
+                    Productos.Add(new Producto());
+                }
             else
             {
                 foreach (Producto p1 in productos)
@@ -136,8 +159,11 @@ namespace ApiRestCliente.Models
         //Datos de las categorias
         public List<SelectListItem> Categorias { get; set; }
         public void AgregarCategorias(List<Categoria> categorias)
-        {    
-            Categorias = new List<SelectListItem>();
+        {
+            if (Categorias == null)
+            {
+                Categorias = new List<SelectListItem>();
+            }
             if (Categorias.Count < 1)
             {
                 Categorias.Add(new SelectListItem("----------", "10000"));
@@ -155,6 +181,7 @@ namespace ApiRestCliente.Models
                 if (c.Value.Equals(String.Concat(IdCategoria)))
                 {
                     Producto.Categoria = c.Text;
+                    Categorias.Clear();
                     break;
                 }
             }

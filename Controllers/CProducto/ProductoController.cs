@@ -3,96 +3,106 @@ using ApiRestCliente.Gestores;
 using ApiRestCliente.Models;
 using ApiRestCliente.Models.MProductos;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace ApiRestCliente.Controllers.CProducto
 {
     public class ProductoController : Controller 
     {
-        private ListaDatos datos = UsuarioController.Datos; 
         public IActionResult Index()
         {
-            datos.CargarProductos(GestorProductos.ConsultarProductos());
-            return View(datos);
+            UsuarioController.Datos.CargarProductos(GestorProductos.ConsultarProductoCorreo(UsuarioController.Datos.Usuario.Correo));
+            return View(UsuarioController.Datos);
         }
 
         public IActionResult Categoria()
         {
-            if (datos.Categorias == null)
+            if (UsuarioController.Datos.Categorias == null || UsuarioController.Datos.Categorias.Count < 1)
             {
-                datos.AgregarCategorias(GestorCategoria.ConsultarCategorias());
+                UsuarioController.Datos.AgregarCategorias(GestorCategoria.ConsultarCategorias());
             }
-            return View(datos);
+            return View(UsuarioController.Datos);
         }
         public IActionResult CategoriaP2()
         {
-            return View(datos);
+            return View(UsuarioController.Datos);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CategoriaP2(string NombreProducto, string Descripcion, int CantidadDisponible, decimal ValorVenta)
         {
             bool realizado = false;
-            datos.Producto.CorreoVendedor = datos.Usuario.Correo;
-            datos.Producto.Nombre = NombreProducto;
-            datos.Producto.Descripcion = Descripcion;
-            datos.Producto.CantidadDisponible = CantidadDisponible;
-            datos.Producto.ValorVenta = ValorVenta;
+            UsuarioController.Datos.Producto.CorreoVendedor = UsuarioController.Datos.Usuario.Correo;
+            UsuarioController.Datos.Producto.Nombre = NombreProducto;
+            UsuarioController.Datos.Producto.Descripcion = Descripcion;
+            UsuarioController.Datos.Producto.CantidadDisponible = CantidadDisponible;
+            UsuarioController.Datos.Producto.ValorVenta = ValorVenta;
             await Task.Run(() =>
             {
-                if (datos.Producto.IdProducto != 0)
+                if (UsuarioController.Datos.Producto.IdProducto != 0)
                 {
-                    realizado = GestorProductos.ModificarProducto(datos.Producto);
+                    realizado = GestorProductos.ModificarProducto(UsuarioController.Datos.Producto);
                 }
                 else
                 {
-                    realizado = GestorProductos.RegistrarProducto(datos.Producto);
+                    realizado = GestorProductos.RegistrarProducto( UsuarioController.Datos.Producto);
                 }
             });
             if (realizado)
             {
-                datos.CargarProductos(GestorProductos.ConsultarProductos());
-                return View("Index", datos);
+                UsuarioController.Datos.CargarProductos(GestorProductos.ConsultarProductoCorreo(UsuarioController.Datos.Usuario.Correo));
+                return View("Index", UsuarioController.Datos);
             }
-            return View("Index");
+            return View("CategoriaP2");
         }
 
         public IActionResult Detalles(int? id )
         {
-            datos.AsignarProducto(id);
-            return View(datos);
+            UsuarioController.Datos.AsignarProducto(id);
+            return View(UsuarioController.Datos);
         }
         public IActionResult Modificar(int? id)
         {
-            if (datos.Producto.IdProducto != id && id != null)
+            if (UsuarioController.Datos.Producto.IdProducto != id && id != null)
             {
-                datos.AsignarProducto(id);
+                UsuarioController.Datos.AsignarProducto(id);
             }
-            return View(datos);
+            return View(UsuarioController.Datos);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Modificar([Bind("IdProducto,CorreoVendedor,Categoria,Nombre,Descripcion,CantidadDisponible,ValorVenta")] Producto producto)
         {
-            producto.CorreoVendedor = datos.Producto.CorreoVendedor;
+            producto.CorreoVendedor = UsuarioController.Datos.Producto.CorreoVendedor;
 
             if (ModelState.IsValid)
             {
                 await Task.Run(() =>
                 {
                     GestorProductos.ModificarProducto(producto);
-                    datos.CargarProductos(GestorProductos.ConsultarProductos());
+                    UsuarioController.Datos.CargarProductos(GestorProductos.ConsultarProductoCorreo(UsuarioController.Datos.Usuario.Correo));
                 });
                 return RedirectToAction(nameof(Index));
             }
             return View();
         }
 
+        public async Task<IActionResult> Eliminar(int? id)
+        {
+            await Task.Run(() =>
+            {
+                GestorProductos.EliminarProducto(Convert.ToInt32(id));
+                UsuarioController.Datos.CargarProductos(GestorProductos.ConsultarProductoCorreo(UsuarioController.Datos.Usuario.Correo));
+            });
+            return View("Index",UsuarioController.Datos);
+        }
+
         //Metodos para manipular los datos
 
         public void AgregarCategoria(int a)
         {
-            datos.AsignarCategoria(a);
+            UsuarioController.Datos.AsignarCategoria(a);
         }
 
     }

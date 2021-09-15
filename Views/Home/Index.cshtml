@@ -1,7 +1,42 @@
-﻿@{
+﻿@model ApiRestCliente.Models.ListaDatos
+@{
     ViewData["Title"] = "Home Page";
 }
+
+
+<link rel="stylesheet" href="~/css/SideStyleProducto.css" />
 
 <div class="text-center">
     <h1 class="display-4">MercaLink</h1>
 </div>
+<div class="contenedor">
+
+    @foreach (var producto in Model.Productos)
+    {
+        <div class="row" style="align-items:center">
+            <section>
+                <div class="info">
+                    <h5>@Html.DisplayFor(modelItem => producto.Nombre)</h5>
+                    <div class="row">
+                        <section>
+                            <div class="form-group col-md-3" style="width:200px">
+                                <label>Categoría:</label>
+                                <br />
+                                <label>@Html.DisplayFor(modelItem => producto.Categoria)</label>
+                            </div>
+                        </section>
+                        <section>
+                            <div class="form-group col-md-3" style="width:150px">
+                                <label>Costo:</label>
+                                <br />
+                                <label> @Html.DisplayFor(modelItem => producto.ValorVenta)</label>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <br />
+    }
+</div>
+

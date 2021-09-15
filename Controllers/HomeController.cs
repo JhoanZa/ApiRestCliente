@@ -1,4 +1,5 @@
 ﻿using ApiRestCliente.Controllers.CUsuarios;
+using ApiRestCliente.Gestores;
 using ApiRestCliente.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -17,6 +18,7 @@ namespace ApiRestCliente.Controllers
 
         public IActionResult Index()
         {
+            UsuarioController.Datos.CargarProductosGeneral(GestorProductos.ConsultarProductos());
             if (UsuarioController.Datos.Usuario == null)
             {
                 UsuarioController.Datos.IniciarUsuario();
