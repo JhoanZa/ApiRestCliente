@@ -57,6 +57,36 @@ namespace ApiRestCliente.Controllers.CProducto
             return View("Index");
         }
 
+        public IActionResult Detalles(int? id )
+        {
+            datos.AsignarProducto(id);
+            return View(datos);
+        }
+        public IActionResult Modificar(int? id)
+        {
+            if (datos.Producto.IdProducto != id && id != null)
+            {
+                datos.AsignarProducto(id);
+            }
+            return View(datos);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Modificar([Bind("IdProducto,CorreoVendedor,Categoria,Nombre,Descripcion,CantidadDisponible,ValorVenta")] Producto producto)
+        {
+            producto.CorreoVendedor = datos.Producto.CorreoVendedor;
+
+            if (ModelState.IsValid)
+            {
+                await Task.Run(() =>
+                {
+                    GestorProductos.ModificarProducto(producto);
+                    datos.CargarProductos(GestorProductos.ConsultarProductos());
+                });
+                return RedirectToAction(nameof(Index));
+            }
+            return View();
+        }
 
         //Metodos para manipular los datos
 

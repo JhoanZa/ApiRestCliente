@@ -1,0 +1,58 @@
+﻿@model ApiRestCliente.Models.ListaDatos
+@{ ViewData["Title"] = "Detalles"; }
+
+<link rel="stylesheet" href="~/css/SideStyleProducto.css" />
+<center>
+    <h1>Catalogo de productos</h1>
+</center>
+<br />
+
+<div class="col-md-5 col-md-offset-3">
+    <div class="form-group">
+        <form id="ModificarProducto" method="post" novalidate="novalidate">
+            <div class="form-group">
+                <label asp-for="Producto.IdProducto"></label>
+                <input asp-for="Producto.IdProducto" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producto.CorreoVendedor"></label>
+                <input asp-for="Producto.CorreoVendedor" class="form-control" readonly />
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Producto.Categoria"></label>
+                <input asp-for="Producto.Categoria" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producto.Nombre"></label>
+                <input asp-for="Producto.Nombre" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producto.Descripcion"></label>
+                <input asp-for="Producto.Descripcion" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producto.CantidadDisponible"></label>
+                <input asp-for="Producto.CantidadDisponible" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Producto.ValorVenta"></label>
+                <input asp-for="Producto.ValorVenta" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <button asp-action="Index" type="submit" class="btn btn-primary">Regresar</button>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Confirmar</button>
+            </div>
+
+        </form>
+    </div>
+</div>

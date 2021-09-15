@@ -1,41 +1,45 @@
 ﻿@model ApiRestCliente.Models.ListaDatos
+    <link rel="stylesheet" href="~/css/SideStyleProducto.css" />
 
-<center>
-    <h1>Información de usuario</h1>
-</center>
+    <center>
+        <h1>Información de usuario</h1>
+    </center>
 
-<div class="row">
-    <div class="col-md-5">
-        <section>
-            <br />
-            <h3>Datos de identificación:</h3>
-            <h5>Nombre completo: </h5>
-            <label>@Html.DisplayFor(model => Model.Usuario.PrimerNombre) @Html.DisplayFor(model => Model.Usuario.SegundoNombre) @Html.DisplayFor(model => Model.Usuario.PrimerApellido) @Html.DisplayFor(model => Model.Usuario.SegundoApellido)</label>
-            <br />
-            <h5>Fecha de nacimiento:</h5>
-            <label>@Html.DisplayFor(model => Model.Usuario.FechaNacimiento)</label>
-            <h5>Edad:</h5>
-            <label>@Html.DisplayFor(model => Model.Usuario.Edad) años</label>
-            <h5>Correo:</h5>
-            <label>@Html.DisplayFor(model => Model.Usuario.Correo)</label>
-            <br />
-            <h3>Datos de ubicación:</h3>
-            <h5>Departamento:</h5>
-            <label>@Html.DisplayFor(model => Model.Domicilio.NombreDepartamento)</label>
-            <h5>Municipio:</h5>
-            <label>@Html.DisplayFor(model => Model.Domicilio.NombreMunicipio)</label>
-            <h5>Dirección:</h5>
-            <label>@Html.DisplayFor(model => Model.Domicilio.Direccion)</label>
-            <br /> <br /> <br />
-            <p>
-                <a asp-action="DatosPersonales">Modificar datos personales</a>
-            </p>
-            <p>
-                <a asp-action="DatosCredenciales">Modificar credenciales</a>
-            </p>
-            <p>
-                <a asp-action="DatosResidencia">Modificar datos de residencia</a>
-            </p>
-        </section>
+    <div class="contenedor">
+        <div class="row">
+            <div class="col-md-5">
+                <section>
+                    <br />
+                    <h3>Datos de identificación:</h3>
+                    <h5>Nombre completo: </h5>
+                    <label>@Html.DisplayFor(model => Model.Usuario.PrimerNombre) @Html.DisplayFor(model => Model.Usuario.SegundoNombre) @Html.DisplayFor(model => Model.Usuario.PrimerApellido) @Html.DisplayFor(model => Model.Usuario.SegundoApellido)</label>
+                    <br />
+                    <h5>Fecha de nacimiento:</h5>
+                    <label>@Html.DisplayFor(model => Model.Usuario.FechaNacimiento)</label>
+                    <h5>Edad:</h5>
+                    <label>@Html.DisplayFor(model => Model.Usuario.Edad) años</label>
+                    <h5>Correo:</h5>
+                    <label>@Html.DisplayFor(model => Model.Usuario.Correo)</label>
+                    <br />
+                    <h3>Datos de ubicación:</h3>
+                    <h5>Departamento:</h5>
+                    <label>@Html.DisplayFor(model => Model.Domicilio.NombreDepartamento)</label>
+                    <h5>Municipio:</h5>
+                    <label>@Html.DisplayFor(model => Model.Domicilio.NombreMunicipio)</label>
+                    <h5>Dirección:</h5>
+                    <label>@Html.DisplayFor(model => Model.Domicilio.Direccion)</label>
+                    <br /> <br /> <br />
+                    <p>
+                        <a asp-action="DatosPersonales">Modificar datos personales</a>
+                    </p>
+                    <p>
+                        <a asp-action="DatosCredenciales">Modificar credenciales</a>
+                    </p>
+                    <p>
+                        <a asp-action="DatosResidencia">Modificar datos de residencia</a>
+                    </p>
+                </section>
+            </div>
+        </div>
     </div>
-</div>
+    

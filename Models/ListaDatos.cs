@@ -32,8 +32,6 @@ namespace ApiRestCliente.Models
         //Datos de domicilio
         public Domicilio Domicilio { get; set; }
 
-        public int IdDomicilio { get; set; }
-
         public void CrearDomicilio(Domicilio domicilio)
         {
             if (domicilio != null)
@@ -102,6 +100,19 @@ namespace ApiRestCliente.Models
         //Datos de producto
 
         public Producto Producto { get; set; }
+
+        public void AsignarProducto(int? IdProducto)
+        {
+            Producto = new Producto();
+            foreach (Producto p in Productos)
+            {
+                if (p.IdProducto == IdProducto)
+                {
+                    Producto = p;
+                    break;
+                }
+            }
+        }   
         public List<Producto> Productos { get; set; }
 
         public void CargarProductos(List<Producto> productos)

@@ -1,0 +1,10 @@
+﻿
+.contenedor{
+    padding: 20px 20px 20px 30px;
+}
+
+.info{
+    padding: 20px 20px 5px 20px;
+    background-color: paleturquoise;
+    border-radius: 20px 20px 20px 20px;
+}

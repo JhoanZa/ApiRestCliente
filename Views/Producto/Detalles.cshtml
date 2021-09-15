@@ -1,0 +1,34 @@
+﻿@model ApiRestCliente.Models.ListaDatos
+@{ ViewData["Title"] = "Detalles"; }
+
+<link rel="stylesheet" href="~/css/SideStyleProducto.css" />
+<center>
+    <h1>Catalogo de productos</h1>
+</center>
+<br />
+<div class="contenedor">
+    <div class="col-md-5">
+        <br />
+        <h3>Datos del producto:</h3>
+        <h5>Código:</h5>
+        <label>@Html.DisplayFor(model => Model.Producto.IdProducto)</label>
+        <br />
+        <h5>Nombre:</h5>
+        <label>@Html.DisplayFor(model => Model.Producto.Nombre)</label>
+        <h5>Categoria:</h5>
+        <label>@Html.DisplayFor(model => Model.Producto.Categoria)</label>
+        <h5>Descripción:</h5>
+        <label>@Html.DisplayFor(model => Model.Producto.Descripcion)</label>
+        <h5>Cantidad disponible:</h5>
+        <label>@Html.DisplayFor(model => Model.Producto.CantidadDisponible)</label>
+        <h5>Valor de venta:</h5>
+        <label>$ @Html.DisplayFor(model => Model.Producto.ValorVenta)</label>
+        <br /> <br /> <br />
+        <p>
+            <a asp-action="Modificar" asp-route-id="Producto.IdProducto">Modificar producto</a>
+        </p>
+        <p>
+            <a asp-action="Eliminar">EliminarProducto</a>
+        </p>
+    </div>
+</div>

@@ -21,6 +21,7 @@ namespace ApiRestCliente.Models.MProductos
         }
 
         [JsonProperty(PropertyName = "idProducto")]
+        [Display(Name = "Código")]
         public int IdProducto { get; set; }
         
         [Required]
