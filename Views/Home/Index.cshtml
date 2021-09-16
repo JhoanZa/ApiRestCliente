@@ -13,36 +13,43 @@
 
     @foreach (var producto in Model.Productos)
     {
-        <div class="row" style="align-items:center">
-            <section>
-                <div class="info">
-                    <h5>@Html.DisplayFor(modelItem => producto.Nombre)</h5>
-                    <div class="row">
-                        <section>
-                            <div class="form-group col-md-3" style="width:200px">
-                                <label>Categoría:</label>
-                                <br />
-                                <label>@Html.DisplayFor(modelItem => producto.Categoria)</label>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="form-group col-md-3" style="width:300px">
-                                <label>Descripción:</label>
-                                <br />
-                                <label style="width:270px"> @Html.DisplayFor(modelItem => producto.Descripcion)</label>
-                            </div>
-                        </section>
-                        <section>
-                            <div class="form-group col-md-3" style="width:150px">
-                                <label>Precio:</label>
-                                <br />
-                                <label> @Html.DisplayFor(modelItem => producto.ValorVenta)</label>
-                            </div>
-                        </section>
-                    </div>
+    <div class="row" style="align-items:center">
+        <section>
+            <div class="info">
+                <h5>@Html.DisplayFor(modelItem => producto.Nombre)</h5>
+                <div class="row">
+                    <section>
+                        <div class="form-group col-md-3" style="width:200px">
+                            <label>Categoría:</label>
+                            <br />
+                            <label>@Html.DisplayFor(modelItem => producto.Categoria)</label>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="form-group col-md-3" style="width:300px">
+                            <label>Descripción:</label>
+                            <br />
+                            <label style="width:270px"> @Html.DisplayFor(modelItem => producto.Descripcion)</label>
+                        </div>
+                    </section>
+                    <section>
+                        <div class="form-group col-md-3" style="width:150px">
+                            <label>Precio:</label>
+                            <br />
+                            <label> @Html.DisplayFor(modelItem => producto.ValorVenta)</label>
+                        </div>
+                    </section>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+        <section class="contenedor">
+            <div class="form-group">
+                <h5>Opciones</h5>
+                <a class="btn btn-primary" style="padding:10px 20px 10px 20px">Ver detalles</a>
+                <a class="btn btn-primary" style="padding:10px 20px 10px 20px">Comprar</a>
+            </div>
+        </section>
+    </div>
         <br />
     }
 </div>
