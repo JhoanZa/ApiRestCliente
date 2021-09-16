@@ -26,8 +26,15 @@
                             </div>
                         </section>
                         <section>
+                            <div class="form-group col-md-3" style="width:300px">
+                                <label>Descripción:</label>
+                                <br />
+                                <label style="width:270px"> @Html.DisplayFor(modelItem => producto.Descripcion)</label>
+                            </div>
+                        </section>
+                        <section>
                             <div class="form-group col-md-3" style="width:150px">
-                                <label>Costo:</label>
+                                <label>Precio:</label>
                                 <br />
                                 <label> @Html.DisplayFor(modelItem => producto.ValorVenta)</label>
                             </div>

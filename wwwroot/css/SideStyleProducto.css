@@ -8,3 +8,10 @@
     background-color: paleturquoise;
     border-radius: 20px 20px 20px 20px;
 }
+.contenedor .descripcion{
+    border-radius: 0.25rem;
+    padding: .375rem .75rem;
+    width: 100%;
+    color: #495057;
+    border: 1px solid #ced4da;
+}

@@ -5,8 +5,9 @@
     <h2>Registro de producto</h2>
 </center>
 
+
 <form id="registro" method="post" novalidate="novalidate">
-    <div class="row">
+    <div class="row contenedor">
         <div class="col-md-5">
             <section>
                 <h5>Paso 2: Por favor ingrese los datos sobre el producto a continuación, cuando esté listo presione el botón para finalizar</h5>
@@ -24,8 +25,8 @@
                     <span asp-validation-for="Producto.Nombre" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Producto.Descripcion"></label>
-                    <input name="Descripcion" class="form-control" />
+                    <label asp-for="Producto.Descripcion"></label><br />
+                    <textarea name="Descripcion" rows="8" cols="50" maxlength="250" style="border-radius: 0.25rem; padding: .375rem .75rem;"></textarea>
                     <span asp-validation-for="Producto.Descripcion" class="text-danger"></span>
                 </div>
                 <div class="form-group">
